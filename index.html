@@ -3,503 +3,193 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Smit — Know If Your Business Will Survive</title>
+  <title>Smit — Your AI Financial + ESG Co-Pilot</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --cream:#FAFAF6;
-      --cream-2:#F5F5EF;
-      --charcoal:#1C1C1A;
-      --charcoal-2:#2E2E2B;
-      --red:#8B0000;
-      --red-light:#A50000;
-      --silver:#B8B8B0;
-      --silver-light:#E8E8E2;
-      --text:#1C1C1A;
-      --text-muted:#6B6B63;
+      --cream:#FAFAF6;--cream-2:#F5F5EF;
+      --charcoal:#1C1C1A;--charcoal-2:#2E2E2B;
+      --red:#8B0000;--red-light:#A50000;
+      --green:#1a5c2e;--green-light:#e8f5ee;
+      --silver:#B8B8B0;--silver-light:#E8E8E2;
+      --text:#1C1C1A;--text-muted:#6B6B63;
     }
     html{scroll-behavior:smooth}
-    body{
-      font-family:'Inter',sans-serif;
-      background:var(--cream);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-    }
+    body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;}
 
     /* NAV */
-    nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      background:var(--cream);
-      border-bottom:2px solid var(--charcoal);
-      padding:0 2.5rem;
-      height:56px;
-      display:flex;align-items:center;justify-content:space-between;
-    }
-    .nav-logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.5rem;font-weight:700;
-      color:var(--charcoal);letter-spacing:-0.5px;
-      text-decoration:none;
-    }
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--cream);border-bottom:2px solid var(--charcoal);padding:0 2.5rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--charcoal);letter-spacing:-0.5px;text-decoration:none;}
     .nav-logo span{color:var(--red)}
+    .nav-pill{font-size:0.62rem;font-weight:600;background:var(--red);color:white;padding:0.15rem 0.5rem;letter-spacing:1px;text-transform:uppercase;margin-left:0.5rem;vertical-align:middle;}
     .nav-links{display:flex;gap:2rem;list-style:none}
-    .nav-links a{
-      font-size:0.8rem;font-weight:500;
-      color:var(--text-muted);text-decoration:none;
-      letter-spacing:0.5px;text-transform:uppercase;
-      cursor:pointer;transition:color 0.2s;
-    }
+    .nav-links a{font-size:0.8rem;font-weight:500;color:var(--text-muted);text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:color 0.2s;}
     .nav-links a:hover{color:var(--charcoal)}
-    .nav-cta{
-      background:var(--red);color:white;
-      border:none;padding:0.5rem 1.25rem;
-      font-size:0.8rem;font-weight:600;
-      letter-spacing:0.5px;text-transform:uppercase;
-      cursor:pointer;text-decoration:none;
-      transition:background 0.2s;
-    }
+    .nav-cta{background:var(--red);color:white;border:none;padding:0.5rem 1.25rem;font-size:0.8rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background 0.2s;}
     .nav-cta:hover{background:var(--red-light)}
 
     /* HERO */
-    .hero{
-      padding:9rem 2.5rem 5rem;
-      max-width:1100px;margin:0 auto;
-      display:grid;grid-template-columns:1fr 1fr;
-      gap:4rem;align-items:center;
-    }
-    .hero-kicker{
-      font-size:0.7rem;font-weight:600;
-      color:var(--red);text-transform:uppercase;
-      letter-spacing:3px;margin-bottom:1.25rem;
-      display:flex;align-items:center;gap:0.5rem;
-    }
-    .hero-kicker::before{
-      content:'';width:24px;height:2px;background:var(--red);
-    }
-    .hero h1{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2.2rem,4vw,3.4rem);
-      font-weight:700;line-height:1.1;
-      letter-spacing:-1px;color:var(--charcoal);
-      margin-bottom:1.5rem;
-    }
-    .hero h1 em{
-      font-style:italic;color:var(--red);
-    }
-    .hero-sub{
-      font-size:1rem;color:var(--text-muted);
-      line-height:1.8;margin-bottom:2rem;
-      max-width:480px;
-    }
+    .hero{padding:9rem 2.5rem 5rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .hero-kicker{font-size:0.7rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:3px;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem;}
+    .hero-kicker::before{content:'';width:24px;height:2px;background:var(--red);}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-1px;color:var(--charcoal);margin-bottom:1.5rem;}
+    .hero h1 em{font-style:italic;color:var(--red);}
+    .hero-sub{font-size:0.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:2rem;max-width:480px;}
     .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-    .btn-primary{
-      background:var(--charcoal);color:white;
-      border:none;padding:0.85rem 2rem;
-      font-size:0.85rem;font-weight:600;
-      letter-spacing:0.5px;cursor:pointer;
-      text-decoration:none;display:inline-block;
-      transition:background 0.2s;
-    }
+    .btn-primary{background:var(--charcoal);color:white;border:none;padding:0.85rem 2rem;font-size:0.85rem;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s;}
     .btn-primary:hover{background:var(--red)}
-    .btn-secondary{
-      background:transparent;color:var(--charcoal);
-      border:1.5px solid var(--charcoal);
-      padding:0.85rem 2rem;font-size:0.85rem;
-      font-weight:500;cursor:pointer;
-      text-decoration:none;display:inline-block;
-      transition:all 0.2s;
-    }
+    .btn-secondary{background:transparent;color:var(--charcoal);border:1.5px solid var(--charcoal);padding:0.85rem 2rem;font-size:0.85rem;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
     .btn-secondary:hover{border-color:var(--red);color:var(--red)}
-    .hero-note{
-      font-size:0.75rem;color:var(--text-muted);
-      margin-top:1rem;
-    }
-    .hero-right{position:relative}
+    .hero-note{font-size:0.75rem;color:var(--text-muted);margin-top:1rem;}
+    .hero-flags{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1rem;}
+    .flag-pill{font-size:0.72rem;background:var(--cream-2);border:1px solid var(--silver-light);color:var(--text-muted);padding:0.3rem 0.75rem;}
 
-    /* TERMINAL CARD */
-    .terminal{
-      background:var(--charcoal);
-      border:1px solid var(--charcoal-2);
-      overflow:hidden;
-    }
-    .terminal-header{
-      background:var(--charcoal-2);
-      padding:0.6rem 1rem;
-      display:flex;align-items:center;gap:0.5rem;
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-    .terminal-dot{
-      width:10px;height:10px;border-radius:50%;
-    }
-    .terminal-title{
-      font-size:0.7rem;color:rgba(255,255,255,0.4);
-      letter-spacing:1px;text-transform:uppercase;
-      margin-left:0.5rem;font-weight:500;
-    }
-    .terminal-body{padding:1.5rem}
-    .terminal-label{
-      font-size:0.6rem;font-weight:600;
-      color:rgba(255,255,255,0.35);
-      text-transform:uppercase;letter-spacing:2px;
-      margin-bottom:0.3rem;
-    }
-    .terminal-value{
-      font-family:'Playfair Display',serif;
-      font-size:2.8rem;font-weight:700;
-      line-height:1;margin-bottom:0.4rem;
-    }
-    .terminal-status{
-      font-size:0.7rem;font-weight:600;
-      padding:0.2rem 0.6rem;
-      letter-spacing:0.5px;display:inline-block;
-      margin-bottom:1.25rem;
-    }
-    .t-green{color:#4ade80}
-    .t-amber{color:#fbbf24}
-    .t-red{color:#f87171}
-    .st-green{background:rgba(74,222,128,0.1);color:#4ade80}
-    .st-amber{background:rgba(251,191,36,0.1);color:#fbbf24}
-    .st-red{background:rgba(248,113,113,0.1);color:#f87171}
-    .terminal-divider{
-      height:1px;background:rgba(255,255,255,0.08);
-      margin:1rem 0;
-    }
-    .terminal-row{
-      display:flex;justify-content:space-between;
-      align-items:center;padding:0.4rem 0;
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      font-size:0.8rem;
-    }
-    .terminal-row-label{color:rgba(255,255,255,0.45)}
-    .terminal-row-value{font-weight:600;color:white}
-    .terminal-flag{
-      margin-top:1rem;padding:0.6rem 0.75rem;
-      background:rgba(248,113,113,0.1);
-      border-left:2px solid #f87171;
-      font-size:0.75rem;color:rgba(255,255,255,0.7);
-      line-height:1.5;
-    }
-    .terminal-chat{
-      margin-top:1rem;padding:0.75rem;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.08);
-    }
-    .terminal-chat-q{
-      font-size:0.75rem;color:rgba(255,255,255,0.5);
-      margin-bottom:0.4rem;
-    }
-    .terminal-chat-a{
-      font-size:0.78rem;color:rgba(255,255,255,0.8);
-      line-height:1.6;
-    }
-    .terminal-chat-a span{color:#f87171;font-weight:600}
+    /* TERMINAL */
+    .terminal{background:var(--charcoal);overflow:hidden;}
+    .t-header{background:var(--charcoal-2);padding:0.6rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid rgba(255,255,255,0.06);}
+    .t-dot{width:10px;height:10px;border-radius:50%;}
+    .t-title{font-size:0.68rem;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-left:0.5rem;font-weight:500;}
+    .t-body{padding:1.5rem}
+    .t-combined{text-align:center;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:1rem;}
+    .t-combined-label{font-size:0.58rem;font-weight:600;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.3rem;}
+    .t-combined-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:#fbbf24;line-height:1;}
+    .t-combined-sub{font-size:0.68rem;color:rgba(255,255,255,0.35);margin-top:0.25rem;}
+    .t-breakdown{display:flex;justify-content:space-around;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:1rem;}
+    .t-b-item{text-align:center;}
+    .t-b-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;}
+    .t-b-lbl{font-size:0.58rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.8px;margin-top:0.15rem;}
+    .t-row{display:flex;justify-content:space-between;align-items:center;padding:0.38rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.78rem;}
+    .t-row-label{color:rgba(255,255,255,0.4)}
+    .t-row-val{font-weight:600;color:white}
+    .t-flag{margin-top:0.85rem;padding:0.55rem 0.75rem;background:rgba(248,113,113,0.1);border-left:2px solid #f87171;font-size:0.72rem;color:rgba(255,255,255,0.65);line-height:1.5;}
+    .t-esg{margin-top:0.85rem;padding:0.55rem 0.75rem;background:rgba(74,222,128,0.07);border-left:2px solid #4ade80;font-size:0.72rem;color:rgba(255,255,255,0.65);line-height:1.5;}
+    .t-chat{margin-top:0.85rem;padding:0.75rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);}
+    .t-chat-q{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-bottom:0.4rem;}
+    .t-chat-a{font-size:0.75rem;color:rgba(255,255,255,0.75);line-height:1.6;}
+    .t-chat-a span{color:#f87171;font-weight:600}
+    .t-green{color:#4ade80}.t-amber{color:#fbbf24}.t-red{color:#f87171}
+    .st-amber{background:rgba(251,191,36,0.1);color:#fbbf24;font-size:0.68rem;padding:0.18rem 0.5rem;font-weight:600;}
 
-    /* SECTION LAYOUT */
-    .section{
-      padding:5rem 2.5rem;
-      max-width:1100px;margin:0 auto;
-    }
-    .section-rule{
-      height:2px;background:var(--charcoal);
-      max-width:1100px;margin:0 auto;
-    }
-    .section-rule-thin{
-      height:1px;background:var(--silver-light);
-      max-width:1100px;margin:0 auto;
-    }
-    .section-kicker{
-      font-size:0.7rem;font-weight:600;
-      color:var(--red);text-transform:uppercase;
-      letter-spacing:3px;margin-bottom:0.75rem;
-      display:flex;align-items:center;gap:0.5rem;
-    }
-    .section-kicker::before{content:'';width:16px;height:2px;background:var(--red)}
-    .section-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.8rem,3vw,2.6rem);
-      font-weight:700;letter-spacing:-0.5px;
-      color:var(--charcoal);margin-bottom:0.75rem;
-      line-height:1.2;
-    }
-    .section-sub{
-      font-size:1rem;color:var(--text-muted);
-      line-height:1.8;max-width:560px;
-    }
+    /* SECTIONS */
+    .section{padding:5rem 2.5rem;max-width:1100px;margin:0 auto;}
+    .section-rule{height:2px;background:var(--charcoal);max-width:1100px;margin:0 auto;}
+    .section-rule-thin{height:1px;background:var(--silver-light);max-width:1100px;margin:0 auto;}
+    .section-kicker{font-size:0.7rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:3px;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+    .section-kicker::before{content:'';width:16px;height:2px;background:var(--red);}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-0.5px;color:var(--charcoal);margin-bottom:0.75rem;line-height:1.2;}
+    .section-sub{font-size:0.95rem;color:var(--text-muted);line-height:1.8;max-width:560px;}
 
-    /* WHAT WE SOLVE */
-    .problems{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:0;margin-top:3rem;
-      border:1.5px solid var(--charcoal);
-    }
-    .problem-item{
-      padding:2rem;
-      border-right:1px solid var(--silver-light);
-    }
+    /* SCORE PREVIEW */
+    .scores-combined{background:var(--charcoal);padding:2rem;margin:3rem 0;text-align:center;}
+    .sc-label{font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;}
+    .sc-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:#fbbf24;line-height:1;margin-bottom:0.25rem;}
+    .sc-sub{font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:1.5rem;}
+    .sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);}
+    .sc-cell{background:var(--charcoal-2);padding:1.25rem 1rem;text-align:center;}
+    .sc-cell-val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;}
+    .sc-cell-lbl{font-size:0.62rem;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.2px;}
+
+    /* PROBLEMS */
+    .problems{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3rem;border:1.5px solid var(--charcoal);}
+    .problem-item{padding:2rem;border-right:1px solid var(--silver-light);}
     .problem-item:last-child{border-right:none}
-    .problem-number{
-      font-family:'Playfair Display',serif;
-      font-size:3rem;font-weight:700;
-      color:var(--silver-light);line-height:1;
-      margin-bottom:1rem;
-    }
-    .problem-item h3{
-      font-size:1rem;font-weight:600;
-      color:var(--charcoal);margin-bottom:0.5rem;
-    }
-    .problem-item p{
-      font-size:0.85rem;color:var(--text-muted);
-      line-height:1.7;
-    }
+    .problem-number{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--silver-light);line-height:1;margin-bottom:1rem;}
+    .problem-item h3{font-size:1rem;font-weight:600;color:var(--charcoal);margin-bottom:0.5rem;}
+    .problem-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
 
-    /* HOW IT WORKS */
-    .how-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:2rem;margin-top:3rem;
-    }
-    .how-item{border-top:2px solid var(--charcoal);padding-top:1.5rem}
-    .how-num{
-      font-family:'Playfair Display',serif;
-      font-size:0.85rem;font-weight:700;
-      color:var(--red);margin-bottom:0.75rem;
-      letter-spacing:1px;
-    }
-    .how-item h3{
-      font-size:1rem;font-weight:600;
-      color:var(--charcoal);margin-bottom:0.5rem;
-    }
-    .how-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.7}
+    /* HOW */
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+    .how-item{border-top:2px solid var(--charcoal);padding-top:1.5rem;}
+    .how-num{font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:700;color:var(--red);margin-bottom:0.75rem;letter-spacing:1px;}
+    .how-item h3{font-size:1rem;font-weight:600;color:var(--charcoal);margin-bottom:0.5rem;}
+    .how-item p{font-size:0.85rem;color:var(--text-muted);line-height:1.7;}
 
-    /* WHAT YOU GET */
-    .features-editorial{margin-top:3rem}
-    .feature-row{
-      display:grid;grid-template-columns:1fr 2fr;
-      gap:3rem;padding:2rem 0;
-      border-top:1px solid var(--silver-light);
-      align-items:start;
-    }
-    .feature-row:last-child{border-bottom:1px solid var(--silver-light)}
-    .feature-label{
-      font-size:0.7rem;font-weight:600;
-      color:var(--red);text-transform:uppercase;
-      letter-spacing:2px;margin-bottom:0.5rem;
-    }
-    .feature-name{
-      font-family:'Playfair Display',serif;
-      font-size:1.2rem;font-weight:600;
-      color:var(--charcoal);
-    }
-    .feature-desc{
-      font-size:0.9rem;color:var(--text-muted);
-      line-height:1.8;margin-bottom:0.75rem;
-    }
-    .feature-detail{
-      font-size:0.8rem;color:var(--text-muted);
-      border-left:2px solid var(--silver-light);
-      padding-left:0.75rem;line-height:1.6;
-      font-style:italic;
-    }
+    /* FEATURES */
+    .features-editorial{margin-top:3rem;}
+    .feature-row{display:grid;grid-template-columns:1fr 2fr;gap:3rem;padding:2rem 0;border-top:1px solid var(--silver-light);align-items:start;}
+    .feature-row:last-child{border-bottom:1px solid var(--silver-light);}
+    .feature-label{font-size:0.68rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;}
+    .feature-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--charcoal);}
+    .feature-desc{font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:0.75rem;}
+    .feature-detail{font-size:0.8rem;color:var(--text-muted);border-left:2px solid var(--silver-light);padding-left:0.75rem;line-height:1.6;font-style:italic;}
+    .feature-esg-badge{display:inline-block;font-size:0.65rem;font-weight:600;background:var(--green-light);color:var(--green);padding:0.2rem 0.6rem;letter-spacing:0.5px;margin-bottom:0.5rem;}
+
+    /* STRESS TEST SECTION */
+    .stress-section{background:var(--charcoal-2);padding:4rem 2.5rem;margin:0;}
+    .stress-inner{max-width:1100px;margin:0 auto;}
+    .stress-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem;}
+    .stress-desc{font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.8;}
+    .stress-demo{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:1.5rem;}
+    .stress-row-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);margin-top:1rem;}
+    .stress-cell{background:var(--charcoal);padding:1rem;text-align:center;}
+    .stress-cell-lbl{font-size:0.6rem;font-weight:600;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.35rem;}
+    .stress-cell-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;}
+    .stress-cell-delta{font-size:0.72rem;margin-top:0.2rem;}
 
     /* PRICING */
-    .pricing-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:0;margin-top:3rem;
-      border:1.5px solid var(--charcoal);
-    }
-    .price-col{
-      padding:2rem;
-      border-right:1px solid var(--silver-light);
-    }
+    .pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;border:1.5px solid var(--charcoal);}
+    .price-col{padding:1.75rem;border-right:1px solid var(--silver-light);display:flex;flex-direction:column;}
     .price-col:last-child{border-right:none}
-    .price-col.featured{background:var(--charcoal);color:white}
-    .price-tier{
-      font-size:0.7rem;font-weight:600;
-      text-transform:uppercase;letter-spacing:2px;
-      color:var(--text-muted);margin-bottom:0.5rem;
-    }
-    .price-col.featured .price-tier{color:rgba(255,255,255,0.4)}
-    .price-name{
-      font-family:'Playfair Display',serif;
-      font-size:1.4rem;font-weight:700;
-      color:var(--charcoal);margin-bottom:0.25rem;
-    }
-    .price-col.featured .price-name{color:white}
-    .price-amount{
-      font-family:'Playfair Display',serif;
-      font-size:2.5rem;font-weight:700;
-      color:var(--charcoal);line-height:1;
-      margin:1rem 0 0.25rem;
-    }
-    .price-col.featured .price-amount{color:white}
-    .price-period{
-      font-size:0.8rem;color:var(--text-muted);
-      margin-bottom:1.5rem;
-    }
-    .price-col.featured .price-period{color:rgba(255,255,255,0.4)}
-    .price-divider{
-      height:1px;background:var(--silver-light);
-      margin:1.25rem 0;
-    }
-    .price-col.featured .price-divider{background:rgba(255,255,255,0.12)}
-    .price-features{list-style:none;margin-bottom:2rem}
-    .price-features li{
-      font-size:0.82rem;color:var(--text-muted);
-      padding:0.4rem 0;display:flex;
-      align-items:flex-start;gap:0.5rem;
-      border-bottom:1px solid var(--silver-light);
-    }
-    .price-col.featured .price-features li{
-      color:rgba(255,255,255,0.7);
-      border-color:rgba(255,255,255,0.08);
-    }
-    .price-features li::before{
-      content:'→';color:var(--red);
-      flex-shrink:0;font-size:0.8rem;
-    }
-    .price-col.featured .price-features li::before{color:#f87171}
-    .price-features li.locked{opacity:0.35}
-    .price-features li.locked::before{content:'—';color:var(--silver)}
-    .price-btn{
-      width:100%;padding:0.8rem;
-      font-size:0.8rem;font-weight:600;
-      letter-spacing:0.5px;text-transform:uppercase;
-      cursor:pointer;border:none;
-      text-align:center;display:block;
-      text-decoration:none;transition:all 0.2s;
-    }
-    .price-btn-dark{
-      background:var(--charcoal);color:white;
-    }
-    .price-btn-dark:hover{background:var(--red)}
-    .price-btn-red{
-      background:var(--red);color:white;
-    }
-    .price-btn-red:hover{background:var(--red-light)}
-    .price-btn-outline{
-      background:transparent;color:white;
-      border:1px solid rgba(255,255,255,0.3);
-    }
-    .price-btn-outline:hover{border-color:white}
-    .featured-tag{
-      display:inline-block;
-      background:var(--red);color:white;
-      font-size:0.65rem;font-weight:600;
-      padding:0.2rem 0.6rem;letter-spacing:1px;
-      text-transform:uppercase;margin-bottom:0.5rem;
-    }
+    .price-col.featured{background:var(--charcoal);color:white;position:relative;}
+    .featured-tag{display:inline-block;background:var(--red);color:white;font-size:0.62rem;font-weight:600;padding:0.2rem 0.6rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;}
+    .price-tier{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:0.4rem;}
+    .price-col.featured .price-tier{color:rgba(255,255,255,0.4);}
+    .price-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--charcoal);margin-bottom:0.25rem;}
+    .price-col.featured .price-name{color:white;}
+    .price-amount{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--charcoal);line-height:1;margin:0.85rem 0 0.25rem;}
+    .price-col.featured .price-amount{color:white;}
+    .price-period{font-size:0.78rem;color:var(--text-muted);margin-bottom:1.25rem;}
+    .price-col.featured .price-period{color:rgba(255,255,255,0.4);}
+    .price-divider{height:1px;background:var(--silver-light);margin:1rem 0;}
+    .price-col.featured .price-divider{background:rgba(255,255,255,0.1);}
+    .price-features{list-style:none;flex:1;margin-bottom:1.5rem;}
+    .price-features li{font-size:0.8rem;color:var(--text-muted);padding:0.35rem 0;display:flex;align-items:flex-start;gap:0.4rem;border-bottom:1px solid var(--silver-light);}
+    .price-col.featured .price-features li{color:rgba(255,255,255,0.65);border-color:rgba(255,255,255,0.07);}
+    .price-features li::before{content:'→';color:var(--red);flex-shrink:0;font-size:0.78rem;}
+    .price-col.featured .price-features li::before{color:#f87171;}
+    .price-features li.locked{opacity:0.3;}
+    .price-features li.locked::before{content:'—';color:var(--silver);}
+    .price-btn{width:100%;padding:0.75rem;font-size:0.78rem;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:none;text-align:center;display:block;text-decoration:none;transition:all 0.2s;}
+    .price-btn-dark{background:var(--charcoal);color:white;}
+    .price-btn-dark:hover{background:var(--red);}
+    .price-btn-outline{background:transparent;color:white;border:1px solid rgba(255,255,255,0.25);}
+    .price-btn-outline:hover{border-color:white;}
 
     /* WAITLIST */
-    .waitlist-section{
-      background:var(--charcoal);
-      padding:5rem 2.5rem;
-      margin:0;
-    }
-    .waitlist-inner{
-      max-width:700px;margin:0 auto;
-      text-align:center;
-    }
-    .waitlist-kicker{
-      font-size:0.7rem;font-weight:600;
-      color:var(--red);text-transform:uppercase;
-      letter-spacing:3px;margin-bottom:1rem;
-    }
-    .waitlist-title{
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.8rem,3vw,2.4rem);
-      font-weight:700;color:white;
-      letter-spacing:-0.5px;margin-bottom:1rem;
-      line-height:1.2;
-    }
-    .waitlist-sub{
-      font-size:0.95rem;color:rgba(255,255,255,0.5);
-      line-height:1.8;margin-bottom:2.5rem;
-      max-width:500px;margin-left:auto;margin-right:auto;
-    }
-    .waitlist-form{
-      display:grid;grid-template-columns:1fr 1fr;
-      gap:0.75rem;margin-bottom:0.75rem;
-      text-align:left;
-    }
-    .waitlist-input{
-      width:100%;padding:0.85rem 1rem;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.12);
-      color:white;font-size:0.875rem;
-      font-family:'Inter',sans-serif;
-      outline:none;transition:border-color 0.2s;
-    }
-    .waitlist-input::placeholder{color:rgba(255,255,255,0.25)}
-    .waitlist-input:focus{border-color:var(--red)}
-    .waitlist-select{
-      width:100%;padding:0.85rem 1rem;
-      background:rgba(255,255,255,0.06);
-      border:1px solid rgba(255,255,255,0.12);
-      color:white;font-size:0.875rem;
-      font-family:'Inter',sans-serif;
-      outline:none;appearance:none;cursor:pointer;
-    }
-    .waitlist-select option{background:#2E2E2B;color:white}
-    .waitlist-submit{
-      width:100%;padding:0.9rem;
-      background:var(--red);color:white;border:none;
-      font-size:0.85rem;font-weight:600;
-      letter-spacing:1px;text-transform:uppercase;
-      cursor:pointer;transition:background 0.2s;
-      margin-top:0.25rem;
-    }
-    .waitlist-submit:hover{background:var(--red-light)}
-    .waitlist-note{
-      font-size:0.75rem;color:rgba(255,255,255,0.3);
-      margin-top:1rem;
-    }
-    .waitlist-success{
-      display:none;
-      background:rgba(74,222,128,0.1);
-      border:1px solid rgba(74,222,128,0.3);
-      padding:1.25rem;color:#4ade80;
-      font-size:0.9rem;margin-top:1rem;
-    }
+    .waitlist-section{background:var(--charcoal);padding:5rem 2.5rem;margin:0;}
+    .waitlist-inner{max-width:700px;margin:0 auto;text-align:center;}
+    .waitlist-kicker{font-size:0.7rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;}
+    .waitlist-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:white;letter-spacing:-0.5px;margin-bottom:1rem;line-height:1.2;}
+    .waitlist-sub{font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:2.5rem;max-width:500px;margin-left:auto;margin-right:auto;}
+    .wl-form{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;text-align:left;}
+    .wl-input{width:100%;padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:white;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;}
+    .wl-input::placeholder{color:rgba(255,255,255,0.22)}
+    .wl-input:focus{border-color:var(--red);}
+    .wl-select{width:100%;padding:0.85rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:white;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;appearance:none;cursor:pointer;}
+    .wl-select option{background:#2E2E2B;color:white;}
+    .wl-submit{width:100%;padding:0.9rem;background:var(--red);color:white;border:none;font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:0.25rem;}
+    .wl-submit:hover{background:var(--red-light);}
+    .wl-note{font-size:0.72rem;color:rgba(255,255,255,0.25);margin-top:1rem;}
+    .wl-success{display:none;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);padding:1.25rem;color:#4ade80;font-size:0.9rem;margin-top:1rem;}
 
     /* FOOTER */
-    footer{
-      background:var(--cream-2);
-      border-top:2px solid var(--charcoal);
-      padding:2.5rem;
-    }
-    .footer-inner{
-      max-width:1100px;margin:0 auto;
-      display:flex;justify-content:space-between;
-      align-items:flex-start;gap:2rem;
-    }
-    .footer-logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.3rem;font-weight:700;
-      color:var(--charcoal);margin-bottom:0.5rem;
-    }
-    .footer-logo span{color:var(--red)}
-    .footer-tagline{
-      font-size:0.8rem;color:var(--text-muted);
-      max-width:320px;line-height:1.6;
-    }
-    .footer-right{text-align:right}
-    .footer-sources{
-      font-size:0.72rem;color:var(--text-muted);
-      line-height:1.8;
-    }
-    .footer-disclaimer{
-      font-size:0.72rem;color:var(--text-muted);
-      margin-top:0.75rem;line-height:1.6;
-      max-width:380px;text-align:right;
-    }
+    footer{background:var(--cream-2);border-top:2px solid var(--charcoal);padding:2.5rem;}
+    .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;}
+    .footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--charcoal);margin-bottom:0.4rem;}
+    .footer-logo span{color:var(--red);}
+    .footer-tagline{font-size:0.8rem;color:var(--text-muted);max-width:300px;line-height:1.6;}
+    .footer-right{text-align:right;}
+    .footer-sources{font-size:0.7rem;color:var(--text-muted);line-height:1.9;}
+    .footer-disclaimer{font-size:0.7rem;color:var(--text-muted);margin-top:0.75rem;line-height:1.6;max-width:380px;text-align:right;}
 
-    /* RESPONSIVE */
     @media(max-width:900px){
-      .hero{grid-template-columns:1fr;gap:2rem}
+      .hero,.stress-grid{grid-template-columns:1fr;gap:2rem}
       .problems,.how-grid,.pricing-grid{grid-template-columns:1fr}
+      .sc-grid{grid-template-columns:1fr}
       .problem-item{border-right:none;border-bottom:1px solid var(--silver-light)}
       .price-col{border-right:none;border-bottom:1px solid var(--silver-light)}
-      .waitlist-form{grid-template-columns:1fr}
+      .wl-form{grid-template-columns:1fr}
       .feature-row{grid-template-columns:1fr}
       .footer-inner{flex-direction:column}
       .footer-right{text-align:left}
@@ -510,74 +200,70 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Smit<span>.</span></a>
+  <div>
+    <a class="nav-logo" href="#">Smit<span>.</span></a>
+    <span class="nav-pill">AI Co-Pilot</span>
+  </div>
   <ul class="nav-links">
     <li><a onclick="go('problem')">The problem</a></li>
     <li><a onclick="go('features')">What you get</a></li>
+    <li><a onclick="go('stress')">Stress test</a></li>
     <li><a onclick="go('pricing')">Pricing</a></li>
-    <li><a onclick="go('waitlist')">Early access</a></li>
   </ul>
   <a href="https://preaudit-app.streamlit.app" class="nav-cta" target="_blank">Run free diagnostic →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-kicker">Financial intelligence</div>
-    <h1>
-      Your business deserves<br>
-      a financial expert.<br>
-      <em>Now it has one.</em>
-    </h1>
+  <div>
+    <div class="hero-kicker">AI Financial + ESG Co-Pilot</div>
+    <h1>Your business deserves<br>a financial expert.<br><em>Now it has one.</em></h1>
     <p class="hero-sub">
-      Smit gives small businesses and freelancers the financial 
-      clarity that used to require a CA on retainer — on demand, 
-      in plain English, specific to your numbers. Not generic advice. 
-      Your business. Your data. Real answers.
+      Smit takes your 7 real numbers, runs them against official HMRC, RBI, Bank of England, 
+      and World Bank benchmarks, and delivers a combined Financial + ESG score with concrete 
+      actions that improve both your financial health and your ability to win contracts, loans, and clients.
     </p>
     <div class="hero-actions">
       <a href="https://preaudit-app.streamlit.app" class="btn-primary" target="_blank">Run free diagnostic →</a>
       <a onclick="go('waitlist')" class="btn-secondary" style="cursor:pointer">Get early access</a>
     </div>
-    <p class="hero-note">No credit card. No accountant needed. Built on HMRC, RBI, Bank of England, and World Bank frameworks.</p>
+    <p class="hero-note">No credit card. Not regulated financial advice. Built on HMRC, RBI, Bank of England &amp; World Bank frameworks.</p>
+    <div class="hero-flags">
+      <span class="flag-pill">🇬🇧 UK frameworks — HMRC · Companies House · Bank of England</span>
+      <span class="flag-pill">🇮🇳 India frameworks — RBI · CGST Act · MCA ROC</span>
+      <span class="flag-pill">🌱 ESG — SEBI BRSR Lite · ISO 26000 · UK DBT</span>
+    </div>
   </div>
-  <div class="hero-right">
+  <div>
     <div class="terminal">
-      <div class="terminal-header">
-        <div class="terminal-dot" style="background:#ff5f57"></div>
-        <div class="terminal-dot" style="background:#febc2e"></div>
-        <div class="terminal-dot" style="background:#28c840"></div>
-        <span class="terminal-title">Smit financial diagnostic · live</span>
+      <div class="t-header">
+        <div class="t-dot" style="background:#ff5f57"></div>
+        <div class="t-dot" style="background:#febc2e"></div>
+        <div class="t-dot" style="background:#28c840"></div>
+        <span class="t-title">Smit diagnostic · live · your data loaded</span>
       </div>
-      <div class="terminal-body">
-        <div class="terminal-label">Financial risk score</div>
-        <div class="terminal-value t-amber">42<span style="font-size:1.2rem;color:rgba(255,255,255,0.3);font-weight:400">/100</span></div>
-        <span class="terminal-status st-amber">⚠ Moderate risk</span>
-        <div class="terminal-divider"></div>
-        <div class="terminal-row">
-          <span class="terminal-row-label">Net profit margin</span>
-          <span class="terminal-row-value t-amber">11.4%</span>
+      <div class="t-body">
+        <div class="t-combined">
+          <div class="t-combined-label">Combined Smit Score — Financial + ESG</div>
+          <div class="t-combined-num">54</div>
+          <span class="st-amber">⚠ Developing</span>
+          <div class="t-combined-sub">60% financial · 40% ESG weighting</div>
         </div>
-        <div class="terminal-row">
-          <span class="terminal-row-label">Current ratio</span>
-          <span class="terminal-row-value t-red">0.68</span>
+        <div class="t-breakdown">
+          <div class="t-b-item"><div class="t-b-val t-amber">42</div><div class="t-b-lbl">Financial risk</div></div>
+          <div class="t-b-item"><div class="t-b-val t-amber">60%</div><div class="t-b-lbl">Audit ready</div></div>
+          <div class="t-b-item"><div class="t-b-val t-amber">54%</div><div class="t-b-lbl">ESG score</div></div>
         </div>
-        <div class="terminal-row">
-          <span class="terminal-row-label">Debt-to-revenue</span>
-          <span class="terminal-row-value t-amber">54.2%</span>
-        </div>
-        <div class="terminal-row">
-          <span class="terminal-row-label">Audit readiness</span>
-          <span class="terminal-row-value t-amber">60%</span>
-        </div>
-        <div class="terminal-flag">
-          ● Current ratio 0.68 — cannot meet short-term obligations from liquid assets. Going concern indicator. Immediate action required.
-        </div>
-        <div class="terminal-chat">
-          <div class="terminal-chat-q">You asked: "Am I going to be okay?"</div>
-          <div class="terminal-chat-a">Your current ratio of <span>0.68</span> means if your debt came due tomorrow, you could only cover 68% of it. Your most urgent action this week is chasing your outstanding receivables — that alone could move this ratio above 1.0.</div>
+        <div class="t-row"><span class="t-row-label">Net profit margin</span><span class="t-row-val t-amber">11.4%</span></div>
+        <div class="t-row"><span class="t-row-label">Current ratio</span><span class="t-row-val t-red">0.68</span></div>
+        <div class="t-row"><span class="t-row-label">Debt-to-revenue</span><span class="t-row-val t-amber">54.2%</span></div>
+        <div class="t-row"><span class="t-row-label">Expense ratio</span><span class="t-row-val t-amber">83.1%</span></div>
+        <div class="t-flag">● Current ratio 0.68 — below 1.0. Going concern indicator (ISA 570). Immediate action required.</div>
+        <div class="t-esg">🌱 ESG action: Your 83.1% expense ratio — switching 10% of costs to sustainable suppliers could save £420/year and lift ESG score 12 points.</div>
+        <div class="t-chat">
+          <div class="t-chat-q">You asked Smit AI: "What should I fix first?"</div>
+          <div class="t-chat-a">Your current ratio of <span>0.68</span> is your most urgent issue — per Bank of England SME lending criteria, below 1.0 signals going concern risk. Chase your receivables this week. That alone could move this above 1.0. ⚠ Not regulated financial advice.</div>
         </div>
       </div>
     </div>
@@ -586,26 +272,45 @@
 
 <div class="section-rule"></div>
 
-<!-- THE PROBLEM -->
+<!-- SCORES PREVIEW -->
+<section class="section">
+  <div class="section-kicker">The Smit score</div>
+  <h2 class="section-title">One combined score.<br>Financial health + ESG, together.</h2>
+  <p class="section-sub">The only AI co-pilot that scores your financial risk and ESG governance together — because both affect your ability to grow, borrow, and win clients.</p>
+  <div class="scores-combined">
+    <div class="sc-label">Example Combined Smit Score</div>
+    <div class="sc-num">71</div>
+    <div class="sc-sub">60% financial risk score · 40% ESG governance score</div>
+    <div class="sc-grid">
+      <div class="sc-cell"><div class="sc-cell-val t-green" style="color:#4ade80">78</div><div class="sc-cell-lbl">Financial risk score</div></div>
+      <div class="sc-cell"><div class="sc-cell-val" style="color:#4ade80">80%</div><div class="sc-cell-lbl">Audit readiness</div></div>
+      <div class="sc-cell"><div class="sc-cell-val" style="color:#fbbf24">62%</div><div class="sc-cell-lbl">ESG governance</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule-thin"></div>
+
+<!-- PROBLEM -->
 <section class="section" id="problem">
   <div class="section-kicker">Why Smit exists</div>
-  <h2 class="section-title">Most small businesses are<br>flying financially blind.</h2>
-  <p class="section-sub">They know their revenue. They don't know if they're actually healthy. They find out when something goes wrong.</p>
+  <h2 class="section-title">Most small businesses are<br>financially and operationally blind.</h2>
+  <p class="section-sub">They know their revenue. They don't know what it means. They find out when something goes wrong.</p>
   <div class="problems">
     <div class="problem-item">
       <div class="problem-number">01</div>
-      <h3>No ongoing financial oversight</h3>
-      <p>Most small businesses and freelancers don't have a CA on retainer. They check their bank balance and hope for the best. Financial problems compound in silence until they become crises.</p>
+      <h3>No ongoing financial intelligence</h3>
+      <p>Most small businesses and freelancers don't have a CA on retainer. They check their bank balance and hope. Financial problems compound silently. A monthly Smit diagnostic changes that.</p>
     </div>
     <div class="problem-item">
       <div class="problem-number">02</div>
-      <h3>Tools built for accountants, not owners</h3>
-      <p>Accounting software like Xero or QuickBooks tells you what happened. It doesn't tell you what it means or what to do about it. The interpretation gap is where businesses get into trouble.</p>
+      <h3>ESG is now a business necessity</h3>
+      <p>Banks, large clients, and supply chains increasingly require ESG evidence from SME partners. Most small businesses have no idea where they stand — or that simple, free changes could qualify them.</p>
     </div>
     <div class="problem-item">
       <div class="problem-number">03</div>
-      <h3>Advice costs hundreds an hour</h3>
-      <p>A CA charges £100–200/hour in the UK. ₹5,000–15,000 in India. Most small businesses can't afford proactive financial advisory. They get advice reactively — when it's already too late.</p>
+      <h3>Expert advice costs hundreds per hour</h3>
+      <p>A CA charges £100–200/hour in the UK. ₹5,000–15,000 in India. Smit gives independent businesses the same analytical framework, specific to their numbers, on demand. Free to start.</p>
     </div>
   </div>
 </section>
@@ -613,73 +318,73 @@
 <div class="section-rule-thin"></div>
 
 <!-- HOW IT WORKS -->
-<section class="section" id="how">
+<section class="section">
   <div class="section-kicker">How it works</div>
-  <h2 class="section-title">Three steps.<br>Under five minutes.</h2>
+  <h2 class="section-title">Three steps. Under five minutes.</h2>
   <div class="how-grid">
     <div class="how-item">
       <div class="how-num">Step 01</div>
-      <h3>Enter your numbers</h3>
-      <p>Revenue, expenses, cash, debt, fixed costs, receivables. Numbers you already know. No accounting software needed.</p>
+      <h3>Enter your 7 numbers</h3>
+      <p>Revenue, expenses, cash, debt, fixed costs, receivables — and your region. Numbers you already know. No accounting software. No integration.</p>
     </div>
     <div class="how-item">
       <div class="how-num">Step 02</div>
       <h3>Answer the diagnostic</h3>
-      <p>A structured assessment covering financial health, compliance readiness, and governance. Built on real regulatory frameworks — HMRC, RBI, Bank of England.</p>
+      <p>Compliance checklist + ESG governance questions. Built on HMRC, RBI, CGST Act, UK DBT ESG Guidance, SEBI BRSR Lite, and ISO 26000 frameworks.</p>
     </div>
     <div class="how-item">
       <div class="how-num">Step 03</div>
       <h3>Get your full picture</h3>
-      <p>Risk scores, financial ratios with benchmarks, audit flags, prioritised actions, and an AI assistant that answers questions about your specific numbers.</p>
+      <p>Combined Smit Score, 4 financial ratios, audit flags, ESG upgrade plan, stress test, and — on Pro — an AI assistant that knows your exact numbers.</p>
     </div>
   </div>
 </section>
 
 <div class="section-rule-thin"></div>
 
-<!-- WHAT YOU GET -->
+<!-- FEATURES -->
 <section class="section" id="features">
   <div class="section-kicker">What you get</div>
   <h2 class="section-title">Financial intelligence<br>built for your reality.</h2>
   <div class="features-editorial">
     <div class="feature-row">
       <div>
-        <div class="feature-label">Core diagnostic</div>
-        <div class="feature-name">Financial risk scoring</div>
+        <div class="feature-label">Core</div>
+        <div class="feature-name">Combined Smit Score</div>
       </div>
       <div>
-        <p class="feature-desc">A composite 0–100 score across three dimensions: profitability, liquidity, and leverage. Benchmarked against published data from HMRC (UK) and RBI (India) — not generic averages. You see your score, what drove it, and what it means for your business specifically.</p>
-        <p class="feature-detail">Benchmarks: UK profit margin healthy ≥20% (HMRC Business Population Estimates). India ≥15% (RBI MSME Lending Data). Current ratio healthy ≥2.0 (Bank of England SME lending criteria). Debt-to-revenue high risk >60% (World Bank MSME Finance Gap Report).</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div>
-        <div class="feature-label">Compliance</div>
-        <div class="feature-name">Audit readiness assessment</div>
-      </div>
-      <div>
-        <p class="feature-desc">A structured checklist of the questions any regulatory review would ask first — VAT/GST status, record keeping, banking discipline, filing history. You get a readiness score plus specific gaps identified, in plain English.</p>
-        <p class="feature-detail">UK framework references HMRC self-assessment requirements and Companies House compliance obligations. India framework references CGST Act 2017 GST thresholds and MCA ROC filing requirements.</p>
+        <p class="feature-desc">A single score combining financial risk (60% weight) and ESG governance (40% weight). The only tool that treats your financial health and sustainability position as a single integrated picture — because banks, investors, and large clients do the same.</p>
+        <p class="feature-detail">Financial benchmarks: HMRC Business Population Estimates (UK) · RBI MSME Lending Data (India) · Bank of England SME lending criteria · World Bank MSME Finance Gap Report. ESG benchmarks: UK DBT SME ESG Guidance 2023 · SEBI BRSR Lite · ISO 26000.</p>
       </div>
     </div>
     <div class="feature-row">
       <div>
-        <div class="feature-label">Governance</div>
-        <div class="feature-name">ESG & governance layer</div>
+        <div class="feature-label">Financial</div>
+        <div class="feature-name">Risk scoring + audit flags</div>
       </div>
       <div>
-        <p class="feature-desc">A lightweight governance assessment covering financial controls, transparency, compliance awareness, and basic sustainability indicators. Increasingly relevant as supply chain ESG requirements filter down to SMEs from larger clients and lenders.</p>
-        <p class="feature-detail">Covers: financial reporting consistency, separation of business and personal finances, contract discipline, compliance awareness, and environmental impact awareness.</p>
+        <p class="feature-desc">Four financial ratios benchmarked against official data — profit margin, expense ratio, debt-to-revenue, current ratio. Each explained plainly with your specific figure vs the official threshold. Audit flags fire automatically when your numbers trigger regulatory concerns (VAT/GST thresholds, going concern indicators, liquidity risk).</p>
+        <p class="feature-detail">VAT threshold source: HMRC Value Added Tax Act 1994. GST threshold: CGST Act 2017. Going concern: ISA 570. Liquidity: Bank of England SME criteria. Leverage: World Bank MSME Finance Gap Report.</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div>
+        <span class="feature-esg-badge">ESG</span>
+        <div class="feature-name">ESG upgrade plan</div>
+      </div>
+      <div>
+        <p class="feature-desc">3–5 concrete, low/zero-cost ESG actions tied directly to your specific numbers. Not generic sustainability advice — actions calculated from your expense ratio, cash position, and checklist gaps. Each action shows the estimated score improvement and practical steps. Increasingly required by banks, insurers, and large clients even for small suppliers.</p>
+        <p class="feature-detail">Frameworks: UK Government DBT Small Business ESG Guidance 2023 · SEBI BRSR Lite Framework · ISO 26000 Section 6.6 (fair operating practices) · Financial Reporting Council corporate governance code.</p>
       </div>
     </div>
     <div class="feature-row">
       <div>
         <div class="feature-label">Pro feature</div>
-        <div class="feature-name">AI financial assistant</div>
+        <div class="feature-name">AI Financial + ESG Assistant</div>
       </div>
       <div>
-        <p class="feature-desc">An AI assistant that knows your specific financial data and answers questions about it. Not generic financial advice — answers grounded in your actual numbers. Ask why your risk score is low, what a bank would think of your figures, or what to fix first before a funding application.</p>
-        <p class="feature-detail">Powered by Anthropic Claude. Your financial data is passed as context — every answer is specific to your inputs, not generic. Clear disclaimer: Smit interprets and explains. For regulated tax or legal decisions, always confirm with a qualified professional.</p>
+        <p class="feature-desc">An AI assistant engineered with a constrained system prompt — it only uses your 7 inputs and official Smit methodology v2.0 benchmarks. Zero hallucination, zero generic advice. Every answer references your actual numbers and the exact official benchmark source. Ask why your risk score is what it is, which ESG action saves the most money, or what a bank would see when they look at your figures.</p>
+        <p class="feature-detail">Powered by Anthropic Claude. Constrained to Smit methodology v2.0 only. Every response ends with a mandatory disclaimer. Max 250 words. Plain English. Fully auditable prompt available on request.</p>
       </div>
     </div>
     <div class="feature-row">
@@ -688,8 +393,44 @@
         <div class="feature-name">Exportable PDF report</div>
       </div>
       <div>
-        <p class="feature-desc">A professionally formatted report of your complete diagnostic — scores, ratios, flags, actions, and assessment. Formatted for real-world use: share with a bank manager, attach to a funding application, or bring to a CA meeting as a starting point.</p>
-        <p class="feature-detail">Coming soon. The one-time report purchase is designed for businesses at a specific inflection point — funding, partnership, regulatory review — who want a credible document without a subscription.</p>
+        <p class="feature-desc">A professionally formatted report of your complete diagnostic — Combined Smit Score, ratios, flags, ESG upgrade plan, and AI assessment. Formatted for real-world use: attach to a bank application, share with a CA, or include in a tender for a larger client contract.</p>
+        <p class="feature-detail">Coming soon. One-time report designed for businesses at a specific inflection point — funding round, major contract, regulatory review, or annual CA meeting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- STRESS TEST HERO SECTION -->
+<section class="stress-section" id="stress">
+  <div class="stress-inner">
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;">
+      <div style="width:16px;height:2px;background:var(--red)"></div>
+      <span style="font-size:0.7rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:3px;">Hero feature</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:white;letter-spacing:-0.5px;margin-bottom:0.75rem;line-height:1.2;">
+      Future-proof your business.<br>
+      <span style="color:#fbbf24;font-style:italic;">See exactly what a downturn does.</span>
+    </h2>
+    <div class="stress-grid">
+      <div>
+        <p class="stress-desc">The Smit stress test models a revenue decline of up to 50% using the same conservative assumption banks and investors use — expenses held constant. You see the exact financial impact, plus which ESG actions would reduce the damage.</p>
+        <p class="stress-desc" style="margin-top:1rem;">This is the scenario analysis a CA runs when reviewing your business for a loan application. Now you can run it yourself, any time, before you're in that meeting.</p>
+        <p style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:1rem;">Methodology: Bank of England SME stress testing guidance. Expenses held constant = conservative approach used by UK commercial banks in SME credit assessment.</p>
+      </div>
+      <div>
+        <div class="stress-demo">
+          <div style="font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:0.75rem;">Revenue decline: 20%</div>
+          <div class="stress-row-demo">
+            <div class="stress-cell"><div class="stress-cell-lbl">New revenue</div><div class="stress-cell-val t-amber">£80,000</div><div class="stress-cell-delta" style="color:#f87171;">−20%</div></div>
+            <div class="stress-cell"><div class="stress-cell-lbl">Profit / loss</div><div class="stress-cell-val t-red">−£3,200</div><div class="stress-cell-delta" style="color:#f87171;">Into loss</div></div>
+            <div class="stress-cell"><div class="stress-cell-lbl">New margin</div><div class="stress-cell-val t-red">−4.0%</div><div class="stress-cell-delta" style="color:#f87171;">−15.4pp</div></div>
+          </div>
+          <div style="margin-top:0.85rem;padding:0.6rem 0.75rem;background:rgba(74,222,128,0.07);border-left:2px solid #4ade80;font-size:0.72rem;color:rgba(255,255,255,0.6);line-height:1.5;">
+            🌱 ESG fix: Reducing your expense ratio by 5% through sustainable procurement would add £5,500 buffer — enough to stay profitable under this scenario.
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -700,8 +441,8 @@
 <!-- PRICING -->
 <section class="section" id="pricing">
   <div class="section-kicker">Pricing</div>
-  <h2 class="section-title">Start free.<br>Upgrade when you need more.</h2>
-  <p class="section-sub">The diagnostic is free. The AI assistant and exportable report are Pro. No credit card for the free tier.</p>
+  <h2 class="section-title">Start free. Always.</h2>
+  <p class="section-sub">The diagnostic, ESG plan, and stress test are free. The AI assistant and exportable report are Pro. No monthly plans — quarterly or annual only.</p>
   <div class="pricing-grid">
     <div class="price-col">
       <div class="price-tier">Free</div>
@@ -710,34 +451,49 @@
       <div class="price-period">₹0 · always free · no credit card</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>Financial risk score (0–100)</li>
-        <li>4 key financial ratios with benchmarks</li>
-        <li>Audit flags detection</li>
-        <li>UK & India compliance frameworks</li>
-        <li>3 priority actions</li>
+        <li>Combined Smit Score (Financial + ESG)</li>
+        <li>4 financial ratios with benchmarks</li>
+        <li>Audit flags with regulatory sources</li>
+        <li>ESG Upgrade Plan (3 actions)</li>
         <li>Stress test tool</li>
-        <li class="locked">AI financial assistant</li>
+        <li>UK &amp; India frameworks</li>
+        <li class="locked">Smit AI assistant</li>
+        <li class="locked">Monthly tracking &amp; history</li>
         <li class="locked">Exportable PDF report</li>
-        <li class="locked">Monthly tracking & history</li>
       </ul>
       <a href="https://preaudit-app.streamlit.app" class="price-btn price-btn-dark" target="_blank">Run free diagnostic →</a>
     </div>
-    <div class="price-col featured">
-      <div class="featured-tag">Most popular</div>
-      <div class="price-tier">Pro</div>
-      <div class="price-name">Full intelligence</div>
-      <div class="price-amount">£12</div>
-      <div class="price-period">per month · £99/year · ₹499/month</div>
+    <div class="price-col">
+      <div class="price-tier">Quarterly</div>
+      <div class="price-name">Pro</div>
+      <div class="price-amount">£29</div>
+      <div class="price-period">every 3 months · ₹999/quarter</div>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li>Everything in Free</li>
-        <li>AI assistant — knows your exact numbers</li>
-        <li>Unlimited questions per month</li>
-        <li>Monthly diagnostic tracking</li>
-        <li>Score history & trend view</li>
-        <li>Governance & ESG full report</li>
+        <li>Smit AI assistant (constrained to your data)</li>
+        <li>Quarterly diagnostic tracking</li>
+        <li>Score history &amp; trend</li>
+        <li>Full ESG upgrade plan (5 actions)</li>
         <li>Priority action deep-dive</li>
-        <li>Exportable PDF report (1/month)</li>
+        <li>1 PDF report per quarter</li>
+      </ul>
+      <a onclick="go('waitlist')" class="price-btn price-btn-dark" style="cursor:pointer">Join early access →</a>
+    </div>
+    <div class="price-col featured">
+      <div class="featured-tag">Most popular</div>
+      <div class="price-tier">Annual</div>
+      <div class="price-name">Pro</div>
+      <div class="price-amount">£89</div>
+      <div class="price-period">per year — saves 23% vs quarterly · ₹3,499/year</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Everything in Quarterly Pro</li>
+        <li>Monthly diagnostic tracking</li>
+        <li>Full score history &amp; trends</li>
+        <li>12 PDF reports per year</li>
+        <li>ESG progress tracking</li>
+        <li>Early access to new features</li>
       </ul>
       <a onclick="go('waitlist')" class="price-btn price-btn-outline" style="cursor:pointer">Join early access →</a>
     </div>
@@ -748,19 +504,19 @@
       <div class="price-period">per report · ₹999 · no subscription</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li>Full diagnostic report as PDF</li>
-        <li>Formatted for bank or CA meetings</li>
-        <li>All scores, ratios, flags, actions</li>
-        <li>AI assessment included</li>
-        <li>Suitable for funding applications</li>
-        <li>No subscription required</li>
+        <li>Full diagnostic PDF</li>
+        <li>Formatted for CA or bank meetings</li>
+        <li>Combined Smit Score + all ratios</li>
+        <li>ESG upgrade plan included</li>
+        <li>AI assessment summary</li>
+        <li>No subscription needed</li>
       </ul>
       <a onclick="go('waitlist')" class="price-btn price-btn-dark" style="cursor:pointer">Join early access →</a>
     </div>
   </div>
-  <p style="font-size:0.75rem;color:var(--text-muted);margin-top:1.5rem;line-height:1.6;">
-    Pro pricing includes Anthropic API costs for AI assistant usage. Estimated API cost per conversation: £0.01–0.03.
-    Included in Pro subscription at no additional charge up to fair use limits.
+  <p style="font-size:0.72rem;color:var(--text-muted);margin-top:1.25rem;line-height:1.6;">
+    Pro pricing includes Anthropic API costs for Smit AI assistant. Estimated cost per conversation: £0.01–0.03. Included within fair use limits at no extra charge.
+    Annual Pro is our most popular plan — includes monthly tracking and full ESG upgrade roadmap.
   </p>
 </section>
 
@@ -770,19 +526,19 @@
 <section class="waitlist-section" id="waitlist">
   <div class="waitlist-inner">
     <div class="waitlist-kicker">Early access</div>
-    <h2 class="waitlist-title">Get Pro features first.<br>Founder pricing. Real feedback welcome.</h2>
-    <p class="waitlist-sub">Smit is live and free to try right now. Join the early access list for Pro features, product updates, and the chance to shape what we build next.</p>
-    <form id="wlForm" onsubmit="handleWaitlist(event)">
-      <div class="waitlist-form">
-        <input class="waitlist-input" type="text" id="wlName" placeholder="Your name" required/>
-        <input class="waitlist-input" type="email" id="wlEmail" placeholder="your@email.com" required/>
-        <select class="waitlist-select" id="wlRegion" required>
+    <h2 class="waitlist-title">Get Pro features first.<br>Shape what we build next.</h2>
+    <p class="waitlist-sub">Smit is live and free to try right now. Join the early access list for Pro features, founder pricing, and the chance to give direct feedback that shapes the product.</p>
+    <form id="wlForm" onsubmit="handleWL(event)">
+      <div class="wl-form">
+        <input class="wl-input" type="text" id="wlName" placeholder="Your name" required/>
+        <input class="wl-input" type="email" id="wlEmail" placeholder="your@email.com" required/>
+        <select class="wl-select" id="wlRegion" required>
           <option value="" disabled selected>Your region</option>
           <option value="uk">🇬🇧 United Kingdom</option>
           <option value="india">🇮🇳 India</option>
           <option value="other">🌍 Other</option>
         </select>
-        <select class="waitlist-select" id="wlType" required>
+        <select class="wl-select" id="wlType" required>
           <option value="" disabled selected>Business type</option>
           <option>Freelancer / Sole trader</option>
           <option>Small business (SME)</option>
@@ -791,36 +547,30 @@
           <option>Other</option>
         </select>
       </div>
-      <button type="submit" class="waitlist-submit">Join early access →</button>
+      <button type="submit" class="wl-submit">Join early access →</button>
     </form>
-    <div class="waitlist-success" id="wlSuccess">
-      ✓ You're on the list. We'll be in touch with early access details.
-    </div>
-    <p class="waitlist-note">No spam. No credit card. Just meaningful updates as we build.</p>
+    <div class="wl-success" id="wlSuccess">✓ You're on the list. We'll be in touch with early access details.</div>
+    <p class="wl-note">No spam. No credit card. Just meaningful updates as we build.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div>
       <div class="footer-logo">Smit<span>.</span></div>
-      <p class="footer-tagline">
-        Financial intelligence for independent businesses.<br>
-        UK & India frameworks. On demand. In plain English.
-      </p>
+      <p class="footer-tagline">Your AI Financial + ESG Co-Pilot.<br>UK &amp; India. On demand. In plain English.</p>
     </div>
     <div class="footer-right">
       <p class="footer-sources">
-        Data sources: HMRC Business Population Estimates ·
-        Companies House · Bank of England SME Lending ·
-        Reserve Bank of India Annual Report ·
-        Ministry of MSME India · World Bank MSME Finance Gap Report
+        Data sources: HMRC Business Population Estimates · Companies House ·
+        Bank of England SME Lending Guidance · Reserve Bank of India Annual Report ·
+        Ministry of MSME India · World Bank MSME Finance Gap Report ·
+        UK DBT SME ESG Guidance 2023 · SEBI BRSR Lite Framework · ISO 26000 · ISA 570
       </p>
       <p class="footer-disclaimer">
-        Smit is a financial intelligence tool. It does not provide regulated 
-        financial, tax, or legal advice. For decisions affecting your tax 
-        position or legal obligations, always consult a qualified professional.
+        Smit is a financial intelligence tool. It does not provide regulated financial,
+        tax, investment, or legal advice. Benchmarks are indicative. For decisions
+        affecting your tax position or legal obligations, always consult a qualified professional.
       </p>
     </div>
   </div>
@@ -829,20 +579,12 @@
 <script>
   function go(id){
     const el=document.getElementById(id);
-    if(el){
-      const top=el.getBoundingClientRect().top+window.pageYOffset-64;
-      window.scrollTo({top,behavior:'smooth'});
-    }
+    if(el){const top=el.getBoundingClientRect().top+window.pageYOffset-64;window.scrollTo({top,behavior:'smooth'});}
   }
-  function handleWaitlist(e){
+  function handleWL(e){
     e.preventDefault();
-    const data={
-      name:document.getElementById('wlName').value,
-      email:document.getElementById('wlEmail').value,
-      region:document.getElementById('wlRegion').value,
-      type:document.getElementById('wlType').value
-    };
-    console.log('Waitlist signup:',data);
+    const d={name:document.getElementById('wlName').value,email:document.getElementById('wlEmail').value,region:document.getElementById('wlRegion').value,type:document.getElementById('wlType').value};
+    console.log('Waitlist signup:',d);
     document.getElementById('wlForm').style.display='none';
     document.getElementById('wlSuccess').style.display='block';
   }
